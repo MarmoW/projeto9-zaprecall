@@ -15,7 +15,7 @@ function App() {
   return (
     <>
     <div className="logo-container">
-        <img src={require('./assets/img/logo.png')}/>
+        <img src={logo}/>
         <h1>ZapRecall</h1>
     </div>
     {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
@@ -24,12 +24,12 @@ function App() {
   )
 }
 
-export default App;
+export default App
 
-import Footer from "./assets/js/footer.js";
-import Perguntas from "./assets/js/perguntas.js";
-import React from "react";
-
+import Footer from "./assets/js/footer.js"
+import Perguntas from "./assets/js/perguntas.js"
+import React from "react"
+import logo from './assets/img/logo.png'
 
 
 
