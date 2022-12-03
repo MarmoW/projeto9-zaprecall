@@ -38,7 +38,16 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         line-height: 19px;
         text-decoration:${textdeco};
     }`;
+    const ImagePlay = styled.img`
+    display: ${!test ? 'none' : 'flex'};
+    height: 20px;
+    width: 20px;`
 
+    const ImageTurn = styled.img`
+    display: ${viraricon ? "none" : "flex"};
+    position: absolute;
+    bottom: 10px;
+    right: 30px;`
     function AbrirPergunta() {
         
         if(jarespondeu == false){
@@ -102,30 +111,8 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
               {virada && <ButtonYellow onClick={() => EscolherResposta(1)}>Quase não lembrei</ButtonYellow>}
               {virada && <ButtonGreen onClick={() => EscolherResposta(0)}>Zap!</ButtonGreen>}              
             </ButtonBox>
-            <ImagemVirar estadopergunta={estadopergunta} viraricon={viraricon} jarespondeu={jarespondeu} imgturn={imgturn} VirarPergunta={VirarPergunta} /> 
-            <ShowImage imagem1={imagem} test={test}></ShowImage>         
+            <ImagePlay src={imagem}/> 
+            <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/>         
         </Container>    
     )
-}
-const ImagePlay = styled.img`
-    display: ${props => props.test ? 'none' : 'flex'};
-    height: 20px;
-    width: 20px;`
-
-function ShowImage(props){
-    return(
-    <ImagePlay src={props.imagem1}/>        
-    )
-}
-
-const ImageTurn = styled.img`
-    display: ${props => props.viraricon ? "none" : "flex"};
-    position: absolute;
-    bottom: 10px;
-    right: 30px;`
-function ImagemVirar(props) {
-    return(
-        <ImageTurn src={props.jarespondeu ? undefined : props.imgturn} onClick={props.estadopergunta ? props.VirarPergunta : undefined}/>
-    )
-
 }
