@@ -27,6 +27,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
     display: flex;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
     color: ${color};
     background-color: ${!test ? "#FFFFD4" : "#FFFFFF"};
     ${abrefecha} 

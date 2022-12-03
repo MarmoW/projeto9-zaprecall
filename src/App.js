@@ -3,6 +3,7 @@ import Perguntas from "./assets/js/perguntas.js"
 import React from "react"
 import logo from './assets/img/logo.png'
 import styled from "styled-components"
+import TelaInicial from "./assets/js/telainicial"
 
 console.warn = () => {};
 function App() {
@@ -22,7 +23,8 @@ function App() {
 
 
   return (
-    <ScreenContainer>
+    <ScreenContainer> 
+        <TelaInicial/> 
         <ContainerLogo>
             <img src={logo}/>
             <h1>ZapRecall</h1>

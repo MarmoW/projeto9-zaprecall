@@ -21,5 +21,6 @@ const FooterStyled = styled.div `
   font-size: 18px;
   color: #333333;
   padding: 10px;
+  box-shadow: -4px 0px 5px 0px rgba(0, 0, 0, 0.15);
 `
 
