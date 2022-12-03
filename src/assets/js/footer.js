@@ -9,7 +9,7 @@ export default function Footer({contacertos, PERGUNTAS, respostas}) {
         <FooterStyled data-test="footer"> 
             <p>{contacertos}/{PERGUNTAS.length} CONCLUIDOS</p>
             <IconesResp>
-                {respostas.map((props) => <img src={props}/>)}
+                {respostas.map((img) => <img src={img}/>)}
             </IconesResp>
         
         </FooterStyled>

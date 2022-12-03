@@ -103,6 +103,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setColor("#FF3030")
             setTextdeco("line-through")
             setTest(true)
+            setContacertos(contacertos + 1)
             setRespostas([...respostas, iconeerro])
         }
     }    
