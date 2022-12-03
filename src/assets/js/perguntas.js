@@ -19,14 +19,35 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     const [viraricon, setViraricon] = React.useState(true)
     const [test, setTest] = React.useState(true)
 
+    const Container = styled.div `
+    width: 300px;
+    height: 35px;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    color: ${color};
+    background-color: #FFFFFF;
+    ${abrefecha} 
+    p {
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-decoration:${textdeco};
+    }`;
+
     function AbrirPergunta() {
-        console.log(virada)
+        
         if(jarespondeu == false){
         if(abrefecha === fechar){
             setAbrefecha(abrir);
             setEstadopergunta(true)
             setViraricon(false)
             setTest(false)
+            
         }
     }
     }
@@ -34,6 +55,8 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         if(virada === false){
         setVirada(true)
         setViraricon(true)
+        console.log(test)
+        console.log(viraricon)
         }
     }
     function EscolherResposta(check) {
@@ -72,16 +95,16 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     }    
     
     return (
-        <CriarContainer color={color} abrefecha={abrefecha} textdeco={textdeco} onClick={jarespondeu ? null : AbrirPergunta} >
+        <Container onClick={jarespondeu ? null : AbrirPergunta} >
             {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p>Pergunta {num}</p>}
             <ButtonBox>
               {virada && <ButtonRed onClick={() => EscolherResposta(2)}>Não lembrei</ButtonRed>}
               {virada && <ButtonYellow onClick={() => EscolherResposta(1)}>Quase não lembrei</ButtonYellow>}
               {virada && <ButtonGreen onClick={() => EscolherResposta(0)}>Zap!</ButtonGreen>}              
             </ButtonBox>
-            <ImagemVirar viraricon={viraricon} jarespondeu={jarespondeu} imgturn={imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/> 
+            <ImagemVirar estadopergunta={estadopergunta} viraricon={viraricon} jarespondeu={jarespondeu} imgturn={imgturn} VirarPergunta={VirarPergunta} /> 
             <ShowImage imagem1={imagem} test={test}></ShowImage>         
-        </CriarContainer>    
+        </Container>    
     )
 }
 const ImagePlay = styled.img`
@@ -94,31 +117,7 @@ function ShowImage(props){
     <ImagePlay src={props.imagem1}/>        
     )
 }
-const Container = styled.div `
-    width: 300px;
-    height: 35px;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    color: ${props => props.color};
-    background-color: #FFFFFF;
-    ${props => props.abrefecha} 
-    p {
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        text-decoration:${props => props.textdeco};
-    }`;
-function CriarContainer(props){
-    return(
-        <Container />
-    )
 
-}
 const ImageTurn = styled.img`
     display: ${props => props.viraricon ? "none" : "flex"};
     position: absolute;
@@ -126,7 +125,7 @@ const ImageTurn = styled.img`
     right: 30px;`
 function ImagemVirar(props) {
     return(
-        <ImageTurn src={props.jarespondeu ? undefined : props.imgturn}/>
+        <ImageTurn src={props.jarespondeu ? undefined : props.imgturn} onClick={props.estadopergunta ? props.VirarPergunta : undefined}/>
     )
 
 }

@@ -1,3 +1,4 @@
+console.warn = () => {};
 function App() {
     const PERGUNTAS = [
         { numero:1, pergunta: "O que é JSX?", resposta: "Uma extensão da linguagem JavaScript" },
