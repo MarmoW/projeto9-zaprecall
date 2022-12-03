@@ -28,7 +28,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     border-radius: 5px;
     display: flex;
     color: ${color};
-    background-color: #FFFFFF;
+    background-color: ${!test ? "#FFFFD4" : "#FFFFFF"};
     ${abrefecha} 
     p {
         font-family: 'Recursive';
@@ -47,7 +47,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     display: ${viraricon ? "none" : "flex"};
     position: absolute;
     bottom: 10px;
-    right: 30px;`
+    right: 10px;`
     function AbrirPergunta() {
         
         if(jarespondeu == false){
