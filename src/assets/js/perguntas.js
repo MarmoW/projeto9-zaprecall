@@ -1,10 +1,16 @@
 import React from "react"
+import imgplay from "../img/seta_play.png"
+import imgturn from "../img/seta_virar.png"
+import iconecerto from "../img/icone_certo.png"
+import iconeerro from "../img/icone_erro.png"
+import iconequase from "../img/icone_quase.png"
+
 
 export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos}){
     const [abrefecha, setAbrefecha] = React.useState("pergunta-fechada")
     const [estadopergunta, setEstadopergunta] = React.useState(false)
     const [virada, setVirada] = React.useState(false)
-    const [imagem, setImagem] = React.useState(require("../img/seta_play.png"))
+    const [imagem, setImagem] = React.useState(imgplay)
     const [respondida, setRespondida] = React.useState("")
     
     console.log(num, pergunta, resposta, respondida)
@@ -36,17 +42,17 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         setEstadopergunta(false)
         setVirada(false)
         if(check === 0){
-            setImagem(require("../img/icone_certo.png"))
+            setImagem(iconecerto)
             setContacertos(contacertos + 1)
             setRespondida("respverde")
         }
         if(check === 1){
-            setImagem(require("../img/icone_quase.png"))
+            setImagem(iconequase)
             setContacertos(contacertos + 1)
             setRespondida("respamarelo")
         }
         if(check === 2){
-            setImagem(require("../img/icone_erro.png"))
+            setImagem(iconeerro)
             setRespondida("respvermelho")
         }
     }
@@ -58,7 +64,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
               {virada && <button className="botao amarelo" onClick={() => EscolherResposta(1)}>Quase não lembrei</button>}
               {virada && <button className="botao verde" onClick={() => EscolherResposta(0)}>Zap!</button>}
             </div>
-            <img src={estadopergunta ? require('../img/seta_virar.png') : imagem} className={virada ? "none" : undefined} onClick={estadopergunta ? VirarPergunta : undefined}/>
+            <img src={estadopergunta ? imgturn : imagem} className={virada ? "none" : undefined} onClick={estadopergunta ? VirarPergunta : undefined}/>
             
         </div>    
     )
