@@ -70,6 +70,7 @@
   font-size: 12px;
   line-height: 14px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -78,6 +79,7 @@
   border-radius: 5px;
   border: 1px solid blue;
   padding:5px;
+  
 }
 
 .pergunta-fechada {
@@ -91,6 +93,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: #333333;
 }
 
 .pergunta-fechada > p {
@@ -99,7 +102,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  
 }
 
 .pergunta-aberta {
@@ -126,4 +129,45 @@
   position: absolute;
   bottom: 10px;
   right: 10px;
+}
+.pergunta-botoes {
+  display: flex;
+  justify-content: space-between;
+}
+.botao {
+  width: 85px;
+  height: 37px;
+  color: #FFFFFF;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.verde {
+  background-color: #2FBE34;
+}
+.vermelho{
+  background-color: #FF3030;
+}
+.amarelo {
+  background-color: #FF922E;
+}
+.none {
+  display: none;
+}
+.respverde {
+  color: #2FBE34;
+  text-decoration: line-through;
+}
+.respvermelho{
+  color: #FF3030;
+  text-decoration: line-through;
+}
+.respamarelo {
+  color: #FF922E;
+  text-decoration: line-through;
 }
