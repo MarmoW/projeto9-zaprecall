@@ -4,26 +4,53 @@ import imgturn from "../img/seta_virar.png"
 import iconecerto from "../img/icone_certo.png"
 import iconeerro from "../img/icone_erro.png"
 import iconequase from "../img/icone_quase.png"
-
-
+import styled from "styled-components"
+import { abrir, fechar, ButtonGreen, ButtonYellow, ButtonRed, ButtonBox} from "./styled"
+ 
 export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos}){
-    const [abrefecha, setAbrefecha] = React.useState("pergunta-fechada")
     const [estadopergunta, setEstadopergunta] = React.useState(false)
     const [virada, setVirada] = React.useState(false)
     const [imagem, setImagem] = React.useState(imgplay)
-    const [respondida, setRespondida] = React.useState("")
-    
-    console.log(num, pergunta, resposta, respondida)
+    const [color, setColor] = React.useState("#333333")
+    const [textdeco, setTextdeco] = React.useState("none")
+    const [abrefecha, setAbrefecha] = React.useState(fechar)    
+    const [jarespondeu, setJarespondeu] = React.useState(false)
+
+    const Container = styled.div `
+    width: 300px;
+    height: 35px;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    color: ${color};
+    background-color: #FFFFFF;
+    ${abrefecha} 
+    p {
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-decoration:${textdeco};
+    }`;
+    const ImagePlay = styled.img`
+    display: ${abrefecha === abrir ? "none" : "flex"};
+    height: 20px;
+    width: 20px;`
+    const ImageTurn = styled.img`
+    display: ${virada ? "none" : "flex"};
+    position: absolute;
+    bottom: 10px;
+    right: 10px;`
 
     function AbrirPergunta() {
-        if(respondida === ''){
-        if(abrefecha === "pergunta-fechada"){
-            setAbrefecha("pergunta-aberta");
+        console.log(virada)
+        if(jarespondeu == false){
+        if(abrefecha === fechar){
+            setAbrefecha(abrir);
             setEstadopergunta(true)
-        }
-        else{
-            setAbrefecha("pergunta-fechada")
-            setEstadopergunta(false)
         }
     }
     }
@@ -31,42 +58,49 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         if(virada === false){
         setVirada(true)
         }
-        else{
-        setAbrefecha("pergunta-fechada")
-        setEstadopergunta(false)
-        setVirada(false)
-        }
     }
     function EscolherResposta(check) {
         setAbrefecha("pergunta-fechada")
-        setEstadopergunta(false)
+        setEstadopergunta(true)
         setVirada(false)
         if(check === 0){
             setImagem(iconecerto)
             setContacertos(contacertos + 1)
-            setRespondida("respverde")
+            setAbrefecha(fechar)
+            setEstadopergunta(false)
+            setJarespondeu(true)
+            setColor("#2FBE34")
+            setTextdeco("line-through")
         }
         if(check === 1){
             setImagem(iconequase)
             setContacertos(contacertos + 1)
-            setRespondida("respamarelo")
+            setAbrefecha(fechar)
+            setEstadopergunta(false)
+            setJarespondeu(true)
+            setColor("#FF922E")
+            setTextdeco("line-through")
         }
         if(check === 2){
             setImagem(iconeerro)
-            setRespondida("respvermelho")
+            setAbrefecha(fechar)
+            setEstadopergunta(false)
+            setJarespondeu(true)
+            setColor("#FF3030")
+            setTextdeco("line-through")
         }
-    }
+    }    
     return (
-        <div className={abrefecha} onClick={estadopergunta ? null : AbrirPergunta}>
-            {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p className={respondida}>Pergunta {num}</p>}
-            <div className="pergunta-botoes">
-              {virada && <button className="botao vermelho" onClick={() => EscolherResposta(2)}>Não lembrei</button>}
-              {virada && <button className="botao amarelo" onClick={() => EscolherResposta(1)}>Quase não lembrei</button>}
-              {virada && <button className="botao verde" onClick={() => EscolherResposta(0)}>Zap!</button>}
-            </div>
-            <img src={estadopergunta ? imgturn : imagem} className={virada ? "none" : undefined} onClick={estadopergunta ? VirarPergunta : undefined}/>
+        <Container onClick={jarespondeu ? null : AbrirPergunta} >
+            {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p>Pergunta {num}</p>}
+            <ButtonBox>
+              {virada && <ButtonRed onClick={() => EscolherResposta(2)}>Não lembrei</ButtonRed>}
+              {virada && <ButtonYellow onClick={() => EscolherResposta(1)}>Quase não lembrei</ButtonYellow>}
+              {virada && <ButtonGreen onClick={() => EscolherResposta(0)}>Zap!</ButtonGreen>}              
+            </ButtonBox>
+            <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/> 
+            <ImagePlay src={imagem}/>              
             
-        </div>    
+        </Container>    
     )
 }
-

@@ -9,20 +9,53 @@ function App() {
         { numero:7, pergunta: "Usamos props para __", resposta: "Passar diferentes informações para componentes" },
         { numero:8, pergunta: "Usamos estado (state) para __", resposta: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
     ]
+  
     const [contacertos, setContacertos] = React.useState(0)    
+    
 
 
   return (
-    <>
-    <div className="logo-container">
-        <img src={logo}/>
-        <h1>ZapRecall</h1>
-    </div>
-    {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
-    <Footer contacertos={contacertos} PERGUNTAS={PERGUNTAS} />
-    </>
+    <ScreenContainer>
+        <ContainerLogo>
+            <img src={logo}/>
+            <h1>ZapRecall</h1>
+        </ContainerLogo>
+        {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
+        <Footer contacertos={contacertos} PERGUNTAS={PERGUNTAS} />
+    </ScreenContainer>
   )
 }
+
+const ContainerLogo = styled.div`
+    display: flex;
+    align-items: center;
+    margin: 40px 0 20px 0;
+    h1 {
+        font-family: 'Righteous';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 36px;
+        line-height: 45px;
+        color: #FFFFFF;
+        margin-left: 20px;
+      }
+    img {
+        width: 52px;
+      }
+ 
+` 
+const ScreenContainer = styled.div `
+  background-color: #FB6B6B;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 200px;
+  `
+
 
 export default App
 
@@ -30,11 +63,4 @@ import Footer from "./assets/js/footer.js"
 import Perguntas from "./assets/js/perguntas.js"
 import React from "react"
 import logo from './assets/img/logo.png'
-
-
-
-//[{numero:1, pergunta:"O que é batata?", resposta:"Um tuberculo que fica mt bom frito"},
-//    {numero:2, pergunta:"O que é batata?2", resposta:"Um tuberculo que fica mt bom frito"},
-//    {numero:3, pergunta:"O que é batata?3", resposta:"Um tuberculo que fica mt bom frito"},
-//    {numero:4, pergunta:"O que é batata?4", resposta:"Um tuberculo que fica mt bom frito"},
-//    {numero:5, pergunta:"O que é batata?4", resposta:"Um tuberculo que fica mt bom frito"}]
+import styled from "styled-components"

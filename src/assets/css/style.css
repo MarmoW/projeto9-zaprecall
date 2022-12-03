@@ -133,6 +133,8 @@
 .pergunta-botoes {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+  box-sizing: border-box;
 }
 .botao {
   width: 85px;
@@ -170,5 +172,18 @@
 .respamarelo {
   color: #FF922E;
   text-decoration: line-through;
+
+}
+
+.imgvirar {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.imgplay {
+  display: flex;
+  height: 20px;
+  width: 23px;
   
 }
