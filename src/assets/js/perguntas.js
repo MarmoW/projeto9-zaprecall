@@ -6,6 +6,7 @@ import iconeerro from "../img/icone_erro.png"
 import iconequase from "../img/icone_quase.png"
 import styled from "styled-components"
 import { abrir, fechar, ButtonGreen, ButtonYellow, ButtonRed, ButtonBox} from "./styled"
+  
  
 export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos}){
     const [estadopergunta, setEstadopergunta] = React.useState(false)
@@ -15,6 +16,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     const [textdeco, setTextdeco] = React.useState("none")
     const [abrefecha, setAbrefecha] = React.useState(fechar)    
     const [jarespondeu, setJarespondeu] = React.useState(false)
+    const [viraricon, setViraricon] = React.useState(true)
 
     const Container = styled.div `
     width: 300px;
@@ -35,15 +37,17 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         line-height: 19px;
         text-decoration:${textdeco};
     }`;
+    const ImageTurn = styled.img`
+    display: ${viraricon ? "none" : "flex"};
+    position: absolute;
+    bottom: 10px;
+    right: 30px;`
+
     const ImagePlay = styled.img`
     display: ${abrefecha === abrir ? "none" : "flex"};
     height: 20px;
     width: 20px;`
-    const ImageTurn = styled.img`
-    display: ${virada ? "none" : "flex"};
-    position: absolute;
-    bottom: 10px;
-    right: 10px;`
+
 
     function AbrirPergunta() {
         console.log(virada)
@@ -51,12 +55,15 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         if(abrefecha === fechar){
             setAbrefecha(abrir);
             setEstadopergunta(true)
+            setViraricon(false)
+            
         }
     }
     }
     function VirarPergunta() {
         if(virada === false){
         setVirada(true)
+        setViraricon(true)
         }
     }
     function EscolherResposta(check) {
@@ -90,6 +97,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setTextdeco("line-through")
         }
     }    
+    console.log(virada)
     return (
         <Container onClick={jarespondeu ? null : AbrirPergunta} >
             {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p>Pergunta {num}</p>}
@@ -100,7 +108,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             </ButtonBox>
             <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/> 
             <ImagePlay src={imagem}/>              
-            
         </Container>    
     )
 }
+
