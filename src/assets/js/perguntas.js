@@ -17,37 +17,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     const [abrefecha, setAbrefecha] = React.useState(fechar)    
     const [jarespondeu, setJarespondeu] = React.useState(false)
     const [viraricon, setViraricon] = React.useState(true)
-
-    const Container = styled.div `
-    width: 300px;
-    height: 35px;
-    margin: 12px;
-    padding: 15px;
-    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
-    display: flex;
-    color: ${color};
-    background-color: #FFFFFF;
-    ${abrefecha} 
-    p {
-        font-family: 'Recursive';
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        line-height: 19px;
-        text-decoration:${textdeco};
-    }`;
-    const ImageTurn = styled.img`
-    display: ${viraricon ? "none" : "flex"};
-    position: absolute;
-    bottom: 10px;
-    right: 30px;`
-
-    const ImagePlay = styled.img`
-    display: ${abrefecha === abrir ? "none" : "flex"};
-    height: 20px;
-    width: 20px;`
-
+    const [test, setTest] = React.useState(true)
 
     function AbrirPergunta() {
         console.log(virada)
@@ -56,7 +26,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setAbrefecha(abrir);
             setEstadopergunta(true)
             setViraricon(false)
-            
+            setTest(false)
         }
     }
     }
@@ -78,6 +48,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setJarespondeu(true)
             setColor("#2FBE34")
             setTextdeco("line-through")
+            setTest(true)
         }
         if(check === 1){
             setImagem(iconequase)
@@ -87,6 +58,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setJarespondeu(true)
             setColor("#FF922E")
             setTextdeco("line-through")
+            setTest(true)
         }
         if(check === 2){
             setImagem(iconeerro)
@@ -95,20 +67,66 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setJarespondeu(true)
             setColor("#FF3030")
             setTextdeco("line-through")
+            setTest(true)
         }
     }    
-    console.log(virada)
+    
     return (
-        <Container onClick={jarespondeu ? null : AbrirPergunta} >
+        <CriarContainer color={color} abrefecha={abrefecha} textdeco={textdeco} onClick={jarespondeu ? null : AbrirPergunta} >
             {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p>Pergunta {num}</p>}
             <ButtonBox>
               {virada && <ButtonRed onClick={() => EscolherResposta(2)}>Não lembrei</ButtonRed>}
               {virada && <ButtonYellow onClick={() => EscolherResposta(1)}>Quase não lembrei</ButtonYellow>}
               {virada && <ButtonGreen onClick={() => EscolherResposta(0)}>Zap!</ButtonGreen>}              
             </ButtonBox>
-            <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/> 
-            <ImagePlay src={imagem}/>              
-        </Container>    
+            <ImagemVirar viraricon={viraricon} jarespondeu={jarespondeu} imgturn={imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/> 
+            <ShowImage imagem1={imagem} test={test}></ShowImage>         
+        </CriarContainer>    
     )
 }
+const ImagePlay = styled.img`
+    display: ${props => props.test ? 'none' : 'flex'};
+    height: 20px;
+    width: 20px;`
 
+function ShowImage(props){
+    return(
+    <ImagePlay src={props.imagem1}/>        
+    )
+}
+const Container = styled.div `
+    width: 300px;
+    height: 35px;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: flex;
+    color: ${props => props.color};
+    background-color: #FFFFFF;
+    ${props => props.abrefecha} 
+    p {
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        text-decoration:${props => props.textdeco};
+    }`;
+function CriarContainer(props){
+    return(
+        <Container />
+    )
+
+}
+const ImageTurn = styled.img`
+    display: ${props => props.viraricon ? "none" : "flex"};
+    position: absolute;
+    bottom: 10px;
+    right: 30px;`
+function ImagemVirar(props) {
+    return(
+        <ImageTurn src={props.jarespondeu ? undefined : props.imgturn}/>
+    )
+
+}
