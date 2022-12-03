@@ -1,3 +1,9 @@
+import Footer from "./assets/js/footer.js"
+import Perguntas from "./assets/js/perguntas.js"
+import React from "react"
+import logo from './assets/img/logo.png'
+import styled from "styled-components"
+
 console.warn = () => {};
 function App() {
     const PERGUNTAS = [
@@ -60,8 +66,3 @@ const ScreenContainer = styled.div `
 
 export default App
 
-import Footer from "./assets/js/footer.js"
-import Perguntas from "./assets/js/perguntas.js"
-import React from "react"
-import logo from './assets/img/logo.png'
-import styled from "styled-components"
