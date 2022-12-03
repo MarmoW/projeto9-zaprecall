@@ -104,15 +104,15 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     }    
     
     return (
-        <Container onClick={jarespondeu ? null : AbrirPergunta} >
-            {estadopergunta ? <p>{virada ? resposta : pergunta}</p> : <p>Pergunta {num}</p>}
+        <Container data-test="flashcard">
+            {estadopergunta ? <p data-test="flashcard-text">{virada ? resposta : pergunta}</p> : <p data-test="flashcard-text">Pergunta {num}</p>}
             <ButtonBox>
-              {virada && <ButtonRed onClick={() => EscolherResposta(2)}>Não lembrei</ButtonRed>}
-              {virada && <ButtonYellow onClick={() => EscolherResposta(1)}>Quase não lembrei</ButtonYellow>}
-              {virada && <ButtonGreen onClick={() => EscolherResposta(0)}>Zap!</ButtonGreen>}              
+              {virada && <ButtonRed onClick={() => EscolherResposta(2)} data-test="no-btn">Não lembrei</ButtonRed>}
+              {virada && <ButtonYellow onClick={() => EscolherResposta(1)} data-test="partial-btn">Quase não lembrei</ButtonYellow>}
+              {virada && <ButtonGreen onClick={() => EscolherResposta(0)} data-test="zap-btn">Zap!</ButtonGreen>}              
             </ButtonBox>
-            <ImagePlay src={imagem}/> 
-            <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined}/>         
+            <ImagePlay src={imagem} onClick={jarespondeu ? null : AbrirPergunta} data-test="play-btn no-icon zap-icon partial-icon" /> 
+            <ImageTurn src={jarespondeu ? undefined : imgturn} onClick={estadopergunta ? VirarPergunta : undefined} data-test="turn-btn"/>         
         </Container>    
     )
 }
