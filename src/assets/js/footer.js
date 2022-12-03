@@ -1,6 +1,6 @@
-export default function Footer({contacertos}) {
+export default function Footer({contacertos, PERGUNTAS}) {
     return (
-        <div className="footer-concluidos">{contacertos}/4 CONCLUIDOS</div>
+        <div className="footer-concluidos">{contacertos}/{PERGUNTAS.length} CONCLUIDOS</div>
 
     )
 }

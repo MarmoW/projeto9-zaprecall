@@ -64,18 +64,3 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
     )
 }
 
-//{require('../img/seta_play.png')}
-
-//estadopergunta ? aberta : fechada
-
-// pergunta={perg.pergunta} resposta
-
-//const [virada, setVirada] = React.useState(
-    //<div className={abrefecha} onClick={estadopergunta ? null : AbrirPergunta}>
-    //    <p>Pergunta {num}</p>
-    //    <img src={estadopergunta ? require('../img/seta_virar.png') : require('../img/seta_play.png')} onClick={estadopergunta ? VirarPergunta : null}/>
-    //</div>    )
-
-    //<p>{estadopergunta ? pergunta : `Pergunta ${num}`}</p>
-
-    //{estadopergunta ? <p>{pergunta}</p> : <p>Pergunta {num}</p>}
