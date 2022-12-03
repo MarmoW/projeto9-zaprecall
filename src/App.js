@@ -17,8 +17,9 @@ function App() {
         { numero:7, pergunta: "Usamos props para __", resposta: "Passar diferentes informações para componentes" },
         { numero:8, pergunta: "Usamos estado (state) para __", resposta: "Dizer para o React quais informações quando atualizadas devem renderizar a tela novamente" }
     ]
-  
+    
     const [contacertos, setContacertos] = React.useState(0)    
+    const [respostas, setRespostas] = React.useState([])
     
 
 
@@ -29,8 +30,8 @@ function App() {
             <img src={logo}/>
             <h1>ZapRecall</h1>
         </ContainerLogo>
-        {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
-        <Footer contacertos={contacertos} PERGUNTAS={PERGUNTAS} />
+        {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} respostas={respostas} setRespostas={setRespostas} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
+        <Footer contacertos={contacertos} PERGUNTAS={PERGUNTAS} respostas={respostas} />
     </ScreenContainer>
   )
 }

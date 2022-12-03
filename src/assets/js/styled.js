@@ -14,7 +14,7 @@ const abrir = `min-height: 100px;
     position: relative;
     flex-direction: column;
     align-itens: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
 }`
 const fechar = `
 align-items: center;

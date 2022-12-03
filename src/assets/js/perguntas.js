@@ -8,7 +8,7 @@ import styled from "styled-components"
 import { abrir, fechar, ButtonGreen, ButtonYellow, ButtonRed, ButtonBox} from "./styled"
   
  
-export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos}){
+export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos, setRespostas, respostas}){
     const [estadopergunta, setEstadopergunta] = React.useState(false)
     const [virada, setVirada] = React.useState(false)
     const [imagem, setImagem] = React.useState(imgplay)
@@ -65,14 +65,14 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
         if(virada === false){
         setVirada(true)
         setViraricon(true)
-        console.log(test)
-        console.log(viraricon)
+        
         }
     }
     function EscolherResposta(check) {
         setAbrefecha("pergunta-fechada")
         setEstadopergunta(true)
         setVirada(false)
+        
         if(check === 0){
             setImagem(iconecerto)
             setContacertos(contacertos + 1)
@@ -82,6 +82,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setColor("#2FBE34")
             setTextdeco("line-through")
             setTest(true)
+            setRespostas([...respostas, iconecerto])
         }
         if(check === 1){
             setImagem(iconequase)
@@ -92,6 +93,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setColor("#FF922E")
             setTextdeco("line-through")
             setTest(true)
+            setRespostas([...respostas, iconequase])
         }
         if(check === 2){
             setImagem(iconeerro)
@@ -101,6 +103,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setColor("#FF3030")
             setTextdeco("line-through")
             setTest(true)
+            setRespostas([...respostas, iconeerro])
         }
     }    
     
