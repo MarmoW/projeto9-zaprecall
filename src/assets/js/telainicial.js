@@ -36,7 +36,7 @@ export default function TelaInicial() {
         <FirstScreen >
             <LogoStart src={logo}/>
             <StyledP>ZapRecall</StyledP>
-            <StartRecall onClick={Game}>Inicial Recall!</StartRecall>
+            <StartRecall onClick={Game} data-test="start-btn">Inicial Recall!</StartRecall>
         </FirstScreen>
 
     )
