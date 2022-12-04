@@ -20,6 +20,7 @@ function App() {
     
     const [contacertos, setContacertos] = React.useState(0)    
     const [respostas, setRespostas] = React.useState([])
+    const [score,setScore] = React.useState(0)
     
 
 
@@ -30,7 +31,7 @@ function App() {
             <img src={logo}/>
             <h1>ZapRecall</h1>
         </ContainerLogo>
-        {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} respostas={respostas} setRespostas={setRespostas} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
+        {PERGUNTAS.map((perg) => <Perguntas key={perg.numero} score={score} setScore={setScore} respostas={respostas} setRespostas={setRespostas} contacertos={contacertos} setContacertos={setContacertos} num={perg.numero} pergunta={perg.pergunta} resposta={perg.resposta}/>)}
         <Footer contacertos={contacertos} PERGUNTAS={PERGUNTAS} respostas={respostas} />
     </ScreenContainer>
   )

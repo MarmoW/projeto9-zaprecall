@@ -8,7 +8,7 @@ import styled from "styled-components"
 import { abrir, fechar, ButtonGreen, ButtonYellow, ButtonRed, ButtonBox} from "./styled"
   
  
-export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos, setRespostas, respostas}){
+export default function Perguntas({num, pergunta, resposta, contacertos, setContacertos, setRespostas, respostas, setScore, score}){
     const [estadopergunta, setEstadopergunta] = React.useState(false)
     const [virada, setVirada] = React.useState(false)
     const [imagem, setImagem] = React.useState(imgplay)
@@ -83,6 +83,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setTextdeco("line-through")
             setTest(true)
             setRespostas([...respostas, iconecerto])
+            setScore(score +1)
         }
         if(check === 1){
             setImagem(iconequase)
@@ -94,6 +95,7 @@ export default function Perguntas({num, pergunta, resposta, contacertos, setCont
             setTextdeco("line-through")
             setTest(true)
             setRespostas([...respostas, iconequase])
+            setScore(score +1)
         }
         if(check === 2){
             setImagem(iconeerro)

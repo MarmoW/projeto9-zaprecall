@@ -11,7 +11,7 @@ export default function Footer({contacertos, PERGUNTAS, respostas}) {
             <IconesResp>
                 {respostas.map((img) => <img src={img}/>)}
             </IconesResp>
-        
+    
         </FooterStyled>
 
     )
